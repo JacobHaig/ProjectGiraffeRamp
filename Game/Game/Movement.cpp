@@ -5,9 +5,7 @@
 #include "Utilities.h"
 #include "Maps.h"
 
-#include <vector>
-#include <string>
-#include <conio.h>
+#include "Common.h"
 
 #define KEY_W 119
 #define KEY_S 115

@@ -8,3 +8,15 @@
 #include <ctime>
 #include <iostream>
 #include <Windows.h>
+#include <io.h>
+#include <fcntl.h>
+#include <conio.h>
+#include <thread>
+#include <windows.h>
+#include <mmsystem.h>
+#include <tuple>
+#include <random>
+#include <iomanip>
+#include <cstdio>
+#include <time.h>
+#include <chrono>

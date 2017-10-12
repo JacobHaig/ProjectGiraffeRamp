@@ -7,21 +7,7 @@
 #include "Person.h"
 
 
-#include <mmsystem.h>
-#include <string>
-#include <thread>
-#include <iostream>
-#include <fstream>
-#include <random>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <cmath>
-#include <ctime>
-#include <iomanip>
-#include <Windows.h>
-#include <cstdio>
-#include <conio.h>
+#include "Common.h"
 
 /*TO DO:
 Create starting player skills

@@ -4,12 +4,8 @@
 #include "Person.h"
 #include "GameCombat.h"
 #include "SaveLoadGame.h"
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <cmath>
-#include <ctime>
+#include "Common.h"
+
 //Create a combat header file for attack commands and interaction with entities.
 
 namespace Fight

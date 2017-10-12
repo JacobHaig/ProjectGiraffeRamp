@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Person.h"
-#include <iostream>
-#include <Windows.h>
-#include <string>
-
+#include "Common.h"
 using namespace std;
 
 Person::Person(string name, int id, int x, int y, string realname)

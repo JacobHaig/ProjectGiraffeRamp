@@ -3,13 +3,7 @@
 #include "maps.h"
 #include "Draw.h"
 
-#include <time.h>
-#include <iostream>
-#include <thread>
-#include <chrono>
-#include <vector>
-#include <string>
-#include <conio.h>
+#include "Common.h"
 
 
 using namespace std;

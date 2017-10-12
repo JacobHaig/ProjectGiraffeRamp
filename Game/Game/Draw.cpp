@@ -3,16 +3,9 @@
 #include "Utilities.h"
 #include "Person.h"
 #include "Maps.h"
+#include "Common.h"
 
 
-#include <io.h>
-#include <fcntl.h>
-#include <fstream>
-#include <iostream>
-#include <conio.h>
-#include <string>
-#include <vector>
-#include <thread>
 
 using namespace std;
 

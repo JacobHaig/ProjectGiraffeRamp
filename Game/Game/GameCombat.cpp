@@ -4,13 +4,7 @@
 #include "Draw.h"
 #include "Person.h"
 #include "SaveLoadGame.h"
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <cmath>
-#include <ctime>
-#include <conio.h>
+#include "Common.h"
 
 
 #define KEY_ESC 27

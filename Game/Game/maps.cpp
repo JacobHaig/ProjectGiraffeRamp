@@ -3,11 +3,7 @@
 #include "Maps.h"
 #include "Utilities.h"
 #include "Draw.h"
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <tuple>
+#include "Common.h"
 
 using namespace std;
 
