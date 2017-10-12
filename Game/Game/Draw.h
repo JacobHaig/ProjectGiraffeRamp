@@ -1,8 +1,6 @@
 #pragma once
 #include "Person.h"
-#include <iostream>
-#include <string>
-#include <vector>
+#include "Common.h"
 
 namespace Draw {
 	void drawEntities(vector<Person*> Entities);

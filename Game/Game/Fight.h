@@ -1,12 +1,8 @@
+#pragma once
 #include "stdafx.h"
 #include "Draw.h"
 #include "Person.h"
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <cmath>
-#include <ctime>
+#include "Common.h"
 
 namespace Fight 
 {

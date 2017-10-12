@@ -1,6 +1,7 @@
-#include "Person.h"
-#include <vector>
 #pragma once
+#include "Person.h"
+#include "Common.h"
+
 namespace Movement {
 
 	char getInput();

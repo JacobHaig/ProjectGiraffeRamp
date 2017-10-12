@@ -1,14 +1,10 @@
+#pragma once
 #include "stdafx.h"
 #include "Fight.h"
 #include "Draw.h"
 #include "Person.h"
-#include "SaveLoad.h"
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <cmath>
-#include <ctime>
+#include "SaveLoadGame.h"
+#include "Common.h"
 
 
 /*TO DO:

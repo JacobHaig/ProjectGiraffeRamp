@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Combat.h" />
+    <ClInclude Include="Common.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="Fight.h" />
     <ClInclude Include="GameCombat.h" />

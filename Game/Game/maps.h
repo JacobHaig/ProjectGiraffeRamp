@@ -1,7 +1,5 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include <string>
+#include "Common.h"
 
 using namespace std;
 
