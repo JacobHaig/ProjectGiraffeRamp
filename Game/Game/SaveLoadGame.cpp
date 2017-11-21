@@ -39,7 +39,7 @@ namespace SaveLoad {
 		string statsFilename, str;
 		int count = 0;
 		COORD pos = { 48,11 };
-		Draw::drawMap(Maps::saveMenu());
+		Draw::drawVectorMaps(mapSelect::saveMenu);
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 
 		do cin >> statsFilename;
@@ -137,8 +137,6 @@ namespace SaveLoad {
 			npcStats[8] = static_cast<int>((rand() % (MAX_SPELL - MIN_SPELL + 1)) + MIN_SPELL);
 		if (npcStats[9] == npcStats[7] || npcStats[9] == npcStats[8])
 			npcStats[9] = static_cast<int>((rand() % (MAX_SPELL - MIN_SPELL + 1)) + MIN_SPELL);
-
-		
 	}
 
 
@@ -178,7 +176,5 @@ namespace SaveLoad {
 			} while (key != 49 || key != 50 || key != 51 || key != 52);
 
 		} while (key != key2);
-
 	}
-
 }

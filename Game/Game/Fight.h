@@ -8,4 +8,3 @@ namespace Fight
 {
 	void fight(vector<Person*> Entities, string OppenentName,string yourName, vector<int> playerStats, string statsFilename);
 }
-

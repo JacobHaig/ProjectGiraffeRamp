@@ -20,4 +20,3 @@
 #include <cstdio>
 #include <time.h>
 #include <chrono>
-

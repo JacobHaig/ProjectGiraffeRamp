@@ -17,7 +17,8 @@ namespace Utilities {
 			if (Name == obj->Name)
 				return counter;
 			counter++;
-		}return -1;
+		}
+		return -1;
 	}
 
 	// checkPos function
@@ -31,6 +32,7 @@ namespace Utilities {
 		}
 		return "Nope";
 	}
+
 	// changeMap function
 	int changeMap(Person* name, int selection) {	// 1 3
 													// 2 4
@@ -57,7 +59,6 @@ namespace Utilities {
 			return mapSelect::Map3;
 	}
 
-
 	// checkMap function
 	int checkMap(vector<Person*> thisVector, int selection) {
 		
@@ -74,7 +75,6 @@ namespace Utilities {
 			Draw::drawVectorEntities(thisVector, selection);
 		}
 		return selection;
-
 	}
 
 	void SleepNow(int MS) {
@@ -119,9 +119,10 @@ namespace Utilities {
 			curEnt = ent2;
 			pos = { 117,11 };
 		}
+
 		curEnt[Utilities::vectorObjIndex("@", curEnt)]->setPos(pos);
-		system("CLS");                                        //clear the screen
-		Draw::drawMap(Maps::playerInfo());
+		system("CLS");				//clear the screen
+		Draw::drawVectorMaps(mapSelect::playerInfo);
 		Draw::drawVectorMaps(curMapSelected);
 		return curEnt;
 	}
@@ -142,7 +143,4 @@ namespace Utilities {
 	void PlayMusic(wstring song) {
 		//PlaySound(song.c_str(), NULL, SND_FILENAME | SND_ASYNC);
 	}
-
 }
-
-

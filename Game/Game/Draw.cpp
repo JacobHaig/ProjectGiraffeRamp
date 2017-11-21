@@ -5,22 +5,10 @@
 #include "Maps.h"
 #include "Common.h"
 
-
-
 using namespace std;
 
 namespace Draw {
-	
 
-	void drawEntities(vector<Person*> Entities, vector<string> Map) {
-		for each (Person* P in Entities)
-		{
-			if (Map[P->getPosY()][P->getPosX()] == ' ') {
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), P->Pos);
-				cout << P->Name;
-			}
-		}
-	}
 	void drawVectorEntities(vector<Person*> Entities, int selection) {
 		auto Map = Maps::getMap(selection); 
 		for each (Person* P in Entities)
@@ -35,7 +23,7 @@ namespace Draw {
 	void drawVectorMaps(int selection) {
 		auto map = Maps::getMap(selection); // Get the map
 
-		for (int i = 0; i < map.size(); i++) {
+		for (int i = 0; i < map.size(); i++) 
 			for (int j = 0; j < map[i].length(); j++) {
 				char charactor = map[i][j];
 				if (charactor != ' ')
@@ -45,9 +33,6 @@ namespace Draw {
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 				}
 			}
-
-			//std::cout << endl;
-		}
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {0, 0});
 	}
 
@@ -76,47 +61,6 @@ namespace Draw {
 
 		if (charactor == '*')
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_INTENSITY);
-
-	}
-
-	// drawMap function
-	void drawMap(vector<string> Map) {//This is the "rendering" function
-
-		for (short i = 0; i < Map.size(); i++)
-		{
-			for (short j = 0; j < Map[i].length(); j++)
-			{
-
-				COORD pos = { j ,i };
-				char name = Map[i][j];
-
-				if (name == '#') {
-					name = char(219);
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8 | FOREGROUND_INTENSITY);
-				}
-
-				if (name == 'T' || name == 'h' || name == 'H')
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6 | FOREGROUND_INTENSITY);
-
-				if (name == '~' || name == '^')
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
-
-				if (name == '+')
-					name = char(92);
-
-				if (name == 'A')
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN);
-
-				if (name == '*')
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_INTENSITY);
-
-				if (name != ' ') {
-					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-					cout << name;
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-				}
-			}
-		}
 	}
 
 	void drawYourStats(vector<Person*> Ent1, vector<Person*> Ent2, vector<Person*> Ent3, vector<Person*> Ent4) {
@@ -148,10 +92,8 @@ namespace Draw {
 
 	}
 
-
-
 	void drawMainMenu() {
-		int speed = 50;//normal speed is 175
+		int speed = 150;//normal speed is 175
 		//thread music(Utilities::PlayMusic, L"ThemeSong.wav");
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 		for (int i = 0; i < 35; i++)
@@ -190,8 +132,6 @@ namespace Draw {
 
 		//music.join();
 		system("CLS");
-
-
 	}
 
 	void drawLore() {
@@ -224,6 +164,7 @@ namespace Draw {
 		//music2.join();   music2 must join if function is music2 is created or crash with occur 
 		Sleep(100);
 	}
+
 	void drawCredits() {
 		//thread music2(Utilities::PlayMusic, L"ThemeSong.wav");
 		int time = 200;
