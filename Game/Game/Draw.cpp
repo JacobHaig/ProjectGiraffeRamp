@@ -10,6 +10,7 @@
 using namespace std;
 
 namespace Draw {
+	
 
 	void drawEntities(vector<Person*> Entities, vector<string> Map) {
 		for each (Person* P in Entities)
@@ -19,6 +20,63 @@ namespace Draw {
 				cout << P->Name;
 			}
 		}
+	}
+	void drawVectorEntities(vector<Person*> Entities, int selection) {
+		auto Map = Maps::getMap(selection); 
+		for each (Person* P in Entities)
+		{
+			if (Map[P->getPosY()][P->getPosX()] == ' ') {
+				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), P->Pos);
+				cout << P->Name;
+			}
+		}
+	}
+
+	void drawVectorMaps(int selection) {
+		auto map = Maps::getMap(selection); // Get the map
+
+		for (int i = 0; i < map.size(); i++) {
+			for (int j = 0; j < map[i].length(); j++) {
+				char charactor = map[i][j];
+				if (charactor != ' ')
+				{
+					changeCursorProperties(i, j, charactor);
+					std::cout << charactor;
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+			}
+
+			//std::cout << endl;
+		}
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {0, 0});
+	}
+
+	void changeCursorProperties(int i, int j, char &charactor) {
+		COORD pos = { j ,i };
+
+		if (charactor != ' ')  // Changing the posistion takes time. Lets only do it when needed!
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+
+		if (charactor == '#') {
+			charactor = char(219);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8 | FOREGROUND_INTENSITY);
+		}
+
+		if (charactor == 'T' || charactor == 'h' || charactor == 'H')
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6 | FOREGROUND_INTENSITY);
+
+		if (charactor == '~' || charactor == '^')
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
+
+		if (charactor == '+')
+			charactor = char(92);
+
+		if (charactor == 'A')
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN);
+
+		if (charactor == '*')
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_INTENSITY);
+
 	}
 
 	// drawMap function

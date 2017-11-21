@@ -3,6 +3,14 @@
 
 using namespace std;
 
+
+
+enum mapSelect
+{
+	saveMenu, Map1, Map2, Map3, Map4, playerInfo, pauseMenu, fightScreen
+};
+
+
 namespace Maps {
 	vector<Person*> Entities1();
 	vector<Person*> Entities2();
@@ -15,6 +23,11 @@ namespace Maps {
 	vector<string> Map3();
 	vector<string> Map4();
 	vector<string> saveMenu();
+	
+	//vector<vector<string>> maps;
+	vector<string> getMap(int);
+	char getCharPos(int selection, int x, int y);
+	void initMaps();
 }
 namespace Enemies {
 	vector<string> Enemy1();

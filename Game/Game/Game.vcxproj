@@ -177,6 +177,7 @@
     <Text Include="ASCII Creatures.txt" />
     <Text Include="Credits.txt" />
     <Text Include="Lores.txt" />
+    <Text Include="maps.txt" />
     <Text Include="npcs.txt" />
     <Text Include="ReadMe.txt" />
     <Text Include="TitleOfGame.txt" />

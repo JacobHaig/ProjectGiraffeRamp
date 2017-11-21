@@ -25,16 +25,16 @@ namespace Movement {
 		return key;
 	}
 
-	bool move(char key, vector<Person*> Entities,vector<string> curMap) {
+	bool move(char key, vector<Person*> Entities,int selection) {
 
 		switch (key)
 		{
 		case KEY_ESC:
 			system("CLS");
-			Draw::drawMap(Maps::pauseMenu());
+			Draw::drawVectorMaps(mapSelect::pauseMenu);
 			while (_getch() != KEY_ESC) {}
 			system("CLS");
-			Draw::drawMap(curMap);
+			Draw::drawVectorMaps(selection);
 			return false;
 
 		case KEY_W: // Player 1

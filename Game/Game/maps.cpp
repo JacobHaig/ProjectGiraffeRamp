@@ -10,12 +10,43 @@ using namespace std;
 
 namespace Maps {
 	auto createPerson(string name, int counterId, int x, int y) {
-		Person *unit = new Person(name, counterId, x, y,"EnemyName");   //Creating the Objective/Enemy 
+		Person *unit = new Person(name, counterId, x, y, "EnemyName");   //Creating the Objective/Enemy 
 		return unit;										//(complex(dynamic) / does not go out of scope automatically / more control)
 	}
 	auto createPerson(string name, int counterId, COORD pos) {
 		Person *unit = new Person(name, counterId, pos, "EnemyName");   //Creating the Objective/Enemy 
 		return unit;										//(complex(dynamic) / does not go out of scope automatically / more control)
+	}
+
+	vector<vector<string>> maps;
+
+	vector<string> getMap(int index) {
+		return maps[index];
+	}
+	char getCharPos(int selection, int x, int y) {
+		return maps[selection][x][y];
+	}
+
+	void initMaps() {
+
+		string line;
+		ifstream myfile("maps.txt");
+		vector<string> wholeVector;
+
+		while (getline(myfile, line))
+			wholeVector.push_back(line);
+		myfile.close();
+
+
+		for (int i = 0; i < wholeVector.size() / 33; i++) {
+			vector<string> tempVector;
+			for (int j = 2; j < 32; j++) {
+				tempVector.push_back(wholeVector[i * 33 + j]);
+			}
+			maps.push_back(tempVector);
+		}
+
+		
 	}
 
 	vector<string> saveMenu()

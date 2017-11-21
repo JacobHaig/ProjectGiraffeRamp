@@ -103,6 +103,9 @@
     <Text Include="ReadMe.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="maps.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Media Include="ThemeSong.wav">

@@ -32,46 +32,48 @@ namespace Utilities {
 		return "Nope";
 	}
 	// changeMap function
-	vector<string> changeMap(Person* name, vector<string> Map) {   // 1 3
-																   // 2 4
-		if (Maps::Map1() == Map && name->getPosY() > 20) // Map 1 to 2
-			return Maps::Map2();
-		if (Maps::Map1() == Map && name->getPosX() > 115)// Map 1 to 3
-			return Maps::Map3();
+	int changeMap(Person* name, int selection) {	// 1 3
+													// 2 4
+		auto Map = Maps::getMap(selection);
 
-		if (Maps::Map2() == Map && name->getPosY() < 5)  // Map 2 to 1  
-			return Maps::Map1();
-		if (Maps::Map2() == Map && name->getPosX() > 115)// Map 2 to 4
-			return Maps::Map4();
+		if (mapSelect::Map1 == selection && name->getPosY() > 20) // Map 1 to 2
+			return mapSelect::Map2;
+		if (mapSelect::Map1 == selection && name->getPosX() > 115)// Map 1 to 3
+			return mapSelect::Map3;
 
-		if (Maps::Map3() == Map && name->getPosX() < 5)// Map 3 to 1
-			return Maps::Map1();
-		if (Maps::Map3() == Map && name->getPosY() > 20)// Map 3 to 4
-			return Maps::Map4();
+		if (mapSelect::Map2 == selection && name->getPosY() < 5)  // Map 2 to 1  
+			return mapSelect::Map1;
+		if (mapSelect::Map2 == selection && name->getPosX() > 115)// Map 2 to 4
+			return mapSelect::Map4;
 
-		if (Maps::Map4() == Map && name->getPosX() < 5)// Map 4 to 2
-			return Maps::Map2();
-		if (Maps::Map4() == Map && name->getPosY() < 5)// Map 4 to 3
-			return Maps::Map3();
+		if (mapSelect::Map3 == selection && name->getPosX() < 5)// Map 3 to 1
+			return mapSelect::Map1;
+		if (mapSelect::Map3 == selection && name->getPosY() > 20)// Map 3 to 4
+			return mapSelect::Map4;
+
+		if (mapSelect::Map4 == selection && name->getPosX() < 5)// Map 4 to 2
+			return mapSelect::Map2;
+		if (mapSelect::Map4 == selection && name->getPosY() < 5)// Map 4 to 3
+			return mapSelect::Map3;
 	}
 
 
 	// checkMap function
-	vector<string> checkMap(vector<Person*> thisVector, vector<string> Map) {
-
+	int checkMap(vector<Person*> thisVector, int selection) {
+		
 		COORD Pos = thisVector[Utilities::vectorObjIndex("@", thisVector)]->getPos();
 		auto name = thisVector[Utilities::vectorObjIndex("@", thisVector)];
 		COORD lastPos = thisVector[Utilities::vectorObjIndex(" ", thisVector)]->getPos();
 
-		if (Map[Pos.Y][Pos.X] == '*') {
-			return changeMap(name, Map);
+		if (Maps::getCharPos(selection, Pos.Y,Pos.X) == '*') {
+			return changeMap(name, selection);
 		}
-		if (Map[Pos.Y][Pos.X] != ' ') {
+		if (Maps::getCharPos(selection, Pos.Y, Pos.X) != ' ') {
 			thisVector[Utilities::vectorObjIndex("@", thisVector)]->setPos(lastPos);
 			thisVector[Utilities::vectorObjIndex(" ", thisVector)]->setPos(Pos);
-			Draw::drawEntities(thisVector, Map);
+			Draw::drawVectorEntities(thisVector, selection);
 		}
-		return Map;
+		return selection;
 
 	}
 
@@ -80,46 +82,47 @@ namespace Utilities {
 	}
 
 
-	vector<Person*> movePlayerOnMapChange(vector<string> curMap, vector<string>lastMap, vector<Person*> curEnt, vector<Person*> ent1, vector<Person*>ent2, vector<Person*>ent3, vector<Person*>ent4) {
+	vector<Person*> movePlayerOnMapChange(int curMapSelected, int lastMapSelected, vector<Person*> curEnt, vector<Person*> ent1, vector<Person*>ent2, vector<Person*>ent3, vector<Person*>ent4) {
+		
 		COORD pos;
-		if (curMap == Maps::Map2() && lastMap == Maps::Map1()) {
+		if (curMapSelected == mapSelect::Map2 && lastMapSelected == mapSelect::Map1) {
 			curEnt = ent2;
 			pos = { 45,1 };
 		}
-		if (curMap == Maps::Map3() && lastMap == Maps::Map1()) {
+		if (curMapSelected == mapSelect::Map3 && lastMapSelected == mapSelect::Map1) {
 			curEnt = ent3;
 			pos = { 2,11 };
 		}
-		if (curMap == Maps::Map1() && lastMap == Maps::Map2()) {
+		if (curMapSelected == mapSelect::Map1 && lastMapSelected == mapSelect::Map2) {
 			curEnt = ent1;
 			pos = { 45,21 };
 		}
-		if (curMap == Maps::Map4() && lastMap == Maps::Map2()) {
+		if (curMapSelected == mapSelect::Map4 && lastMapSelected == mapSelect::Map2) {
 			curEnt = ent4;
 			pos = { 2,11 };
 		}
 
-		if (curMap == Maps::Map1() && lastMap == Maps::Map3()) {
+		if (curMapSelected == mapSelect::Map1 && lastMapSelected == mapSelect::Map3) {
 			curEnt = ent1;
 			pos = { 117,11 };
 		}
-		if (curMap == Maps::Map4() && lastMap == Maps::Map3()) {
+		if (curMapSelected == mapSelect::Map4 && lastMapSelected == mapSelect::Map3) {
 			curEnt = ent4;
 			pos = { 60,1 };
 		}
 
-		if (curMap == Maps::Map3() && lastMap == Maps::Map4()) {
+		if (curMapSelected == mapSelect::Map3 && lastMapSelected == mapSelect::Map2) {
 			curEnt = ent3;
 			pos = { 61,21 };
 		}
-		if (curMap == Maps::Map2() && lastMap == Maps::Map4()) {
+		if (curMapSelected == mapSelect::Map2 && lastMapSelected == mapSelect::Map4) {
 			curEnt = ent2;
 			pos = { 117,11 };
 		}
 		curEnt[Utilities::vectorObjIndex("@", curEnt)]->setPos(pos);
 		system("CLS");                                        //clear the screen
 		Draw::drawMap(Maps::playerInfo());
-		Draw::drawMap(curMap);
+		Draw::drawVectorMaps(curMapSelected);
 		return curEnt;
 	}
 
