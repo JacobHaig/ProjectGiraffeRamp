@@ -81,7 +81,6 @@ namespace Utilities {
 		this_thread::sleep_for(chrono::microseconds(MS));
 	}
 
-
 	vector<Person*> movePlayerOnMapChange(int curMapSelected, int lastMapSelected, vector<Person*> curEnt, vector<Person*> ent1, vector<Person*>ent2, vector<Person*>ent3, vector<Person*>ent4) {
 		
 		COORD pos;
@@ -121,24 +120,24 @@ namespace Utilities {
 		}
 
 		curEnt[Utilities::vectorObjIndex("@", curEnt)]->setPos(pos);
-		system("CLS");				//clear the screen
+		system("CLS");			//clear the screen
 		Draw::drawVectorMaps(mapSelect::playerInfo);
 		Draw::drawVectorMaps(curMapSelected);
 		return curEnt;
 	}
 
 
-
 	COORD randPos(int xrand, int xoff, int yrand, int yoff) { 
 		COORD pos;
-		static int rand1 = 0;
-		srand(time(0) + rand1);
-		rand1 = rand();
+		static int random = 0;
+		srand(time(0) + random);
+		random = rand();
+
+		// x/y rand can not be 0
 		pos.X = rand() % xrand + xoff;
 		pos.Y = rand() % yrand + yoff;
 		return pos;
 	}
-
 
 	void PlayMusic(wstring song) {
 		//PlaySound(song.c_str(), NULL, SND_FILENAME | SND_ASYNC);
