@@ -2,9 +2,7 @@
 #include "Person.h"
 #include "maps.h"
 #include "Draw.h"
-
 #include "Common.h"
-
 
 using namespace std;
 
@@ -18,6 +16,7 @@ namespace Utilities {
 				return counter;
 			counter++;
 		}
+
 		return -1;
 	}
 
@@ -31,6 +30,7 @@ namespace Utilities {
 			if (Pos2.X == Pos1.X && Pos2.Y == Pos1.Y && (name->Name != " " && name->Name != "@"))
 				return name->Name;
 		}
+
 		return "Nope";
 	}
 
@@ -58,12 +58,12 @@ namespace Utilities {
 			return mapSelect::Map2;
 		if (mapSelect::Map4 == selection && name->getPosY() < 5)// Map 4 to 3
 			return mapSelect::Map3;
+
 		return 0;
 	}
 
 	// checkMap function
 	int checkMap(vector<Person*> thisVector, int selection) {
-		
 		Person* personMe = thisVector[Utilities::vectorObjIndex("@", thisVector)];
 		COORD Pos = personMe->getPos();
 		
@@ -78,14 +78,17 @@ namespace Utilities {
 			personBlank->setPos(Pos);
 			Draw::drawVectorEntities(thisVector, selection);
 		}
+
 		return selection;
 	}
 
 	// Stop this thread for _ ms
 	void SleepNow(int MS) {
 		this_thread::sleep_for(chrono::milliseconds(MS));
+
 	}
 
+	// Adjusts the players position on map change
 	vector<Person*> movePlayerOnMapChange(int curMapSelected, int lastMapSelected, vector<Person*> curEnt, vector<Person*> ent1, vector<Person*>ent2, vector<Person*>ent3, vector<Person*>ent4) {
 		
 		COORD pos;
@@ -125,10 +128,10 @@ namespace Utilities {
 		}
 
 		curEnt[Utilities::vectorObjIndex("@", curEnt)]->setPos(pos);
-
 		system("CLS");			//clear the screen
 		Draw::drawVectorMaps(mapSelect::playerInfo);
 		Draw::drawVectorMaps(curMapSelected);
+
 		return curEnt;
 	}
 
@@ -142,6 +145,7 @@ namespace Utilities {
 		// x/y rand can not be 0
 		pos.X = rand() % xrand + xoff;
 		pos.Y = rand() % yrand + yoff;
+
 		return pos;
 	}
 

@@ -22,11 +22,11 @@ playerMultiplier = represents player damage multiplier for attacks
 */
 
 namespace GameCombat{
-	vector<string> combatMenu(vector<int> playerStats, vector<double>npcStats);
+	// vector<string> combatMenu(vector<int> playerStats, vector<double>npcStats);
 	vector<double> attack(vector<int> playerStats, vector<double> npcStats, double effectiveSkill);
 	vector<int> npcAttack(vector<double> npcStats, vector<int>playerStats, double effectiveSkill);
 	int getDamage(int Stats1, int Stats2, int Stats3, int Stats4, int Skill);
-	vector<string> drawEndCombat(vector<int> playerStats, vector<double> npcStats);
+	// vector<string> drawEndCombat(vector<int> playerStats, vector<double> npcStats);
 	vector<int> selectPrompt(vector<int> playerStats);
 	vector<int> getInput();
 	vector<int> skillSelect(int key, int key3);

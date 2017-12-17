@@ -9,35 +9,37 @@ using namespace std;
 
 namespace Draw {
 
+	// Draws all ents at their locations
 	void drawVectorEntities(vector<Person*> Entities, int selection) {
-		auto Map = Maps::getMap(selection);
+		auto map = Maps::getMap(selection);
 		for each (Person* P in Entities)
-		{
-			if (Map[P->getPosY()][P->getPosX()] == ' ') {
+			if (map[P->getPosY()][P->getPosX()] == ' ') {
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), P->Pos);
 				cout << P->Name;
 			}
-		}
+
 	}
 
+	// Draws the entire vector of maps that is selected
 	void drawVectorMaps(int selection) {
 		auto map = Maps::getMap(selection); // Get the map
 
 		for (int i = 0; i < map.size(); i++)
 			for (int j = 0; j < map[i].length(); j++) {
 				char charactor = map[i][j];
-				if (charactor != ' ')
-				{
+				if (charactor != ' ') {
 					changeCursorProperties(i, j, charactor);
 					std::cout << charactor;
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 				}
 			}
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 });
+
 	}
 
+	// Depending on what charactor is selected from the map we need to change the color
 	void changeCursorProperties(int i, int j, char &charactor) {
-		COORD pos = { j ,i };
+		COORD pos = { j, i };
 
 		if (charactor != ' ')  // Changing the posistion takes time. Lets only do it when needed!
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
@@ -61,39 +63,42 @@ namespace Draw {
 
 		if (charactor == '*')
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_INTENSITY);
+
 	}
 
+	// drawYourStats
 	void drawYourStats(vector<Person*> Ent1, vector<Person*> Ent2, vector<Person*> Ent3, vector<Person*> Ent4) {
 		static int health = 100, mana = 100;
-		int numOfEnt = 0;
+		int numOfEnt = Ent1.size() + Ent2.size() + Ent3.size() + Ent4.size();
 
-		numOfEnt = Ent1.size() + Ent2.size() + Ent3.size() + Ent4.size();
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 5 ,25 });
 		cout << "Entities Left: " << numOfEnt;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 5 ,26 });
 		cout << "Mana:   " << mana;
 	}
 
+	// drawFightStats
 	void drawFightStats(string yourName, string enemyName, int yourHealth, int enemyHealth) {
 
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 25 ,3 });// { x , y }
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 25 ,3 });	// { x , y }
 		cout << yourName;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 85,3 });
 		cout << enemyName;
 
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 7 ,25 });// { x , y }
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 7 ,25 });
 		cout << "Skill 1: Placeholder";
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 33 ,25 });// { x , y }
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 33 ,25 });
 		cout << "Skill 2: Placeholder";
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 7 ,27 });// { x , y }
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 7 ,27 });
 		cout << "Skill 3: Placeholder";
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 33 ,27 });// { x , y }
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 33 ,27 });
 		cout << "Skill 4: Placeholder";
 
 	}
 
+	// drawMainMenu
 	void drawMainMenu() {
-		int speed = 150;//normal speed is 175
+		int speed = 150;	//normal speed is 175
 		//thread music(Utilities::PlayMusic, L"ThemeSong.wav");
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 		for (int i = 0; i < 35; i++)
@@ -122,7 +127,7 @@ namespace Draw {
 		system("CLS");
 		Sleep(750);
 
-		COORD Pos = { 39,10 };
+		COORD Pos = { 39, 10 };
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 		cout << "Do you wish to ship the lore? (Y/N): ";
 		char input;
@@ -134,10 +139,10 @@ namespace Draw {
 		system("CLS");
 	}
 
-	// This is depercated
+	// This is depercated. we will no long draw lore
 	void drawLore() {
 		//thread music2(Utilities::PlayMusic, L"ThemeSong.wav");
-		
+
 		/*for (int i = 0; i < 35; i++)
 			cout << endl;
 
@@ -166,6 +171,7 @@ namespace Draw {
 		Sleep(100);
 	}
 
+	// end of game credits scene
 	void drawCredits() {
 		//thread music2(Utilities::PlayMusic, L"ThemeSong.wav");
 		int time = 200;
@@ -177,24 +183,25 @@ namespace Draw {
 		vector<string> text;
 		while (std::getline(titleFile, str))
 			text.push_back(str);
-
 		titleFile.close();
+
 		system("CLS");
+
 		for (int i = 0; i < 35; i++)
 			cout << endl;
 
-		for each (string var in text)
-		{
+		for each (string var in text) {
 			cout << var << "\n";
 			Sleep(time);
 		}
-		for (int i = 0; i < 35; i++)
-		{
+
+		for (int i = 0; i < 35; i++) {
 			cout << endl;
 			Sleep(time);
 		}
 		//music2.join();   music2 must join if function is music2 is created or crash with occur 
 		Sleep(100);
+
 	}
 }
 

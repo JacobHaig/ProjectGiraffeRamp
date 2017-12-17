@@ -15,12 +15,12 @@ namespace Maps {
 		return maps[index];
 	}
 
-	// Returns the Charactor at a certain pos
+	// Returns the Charactor at a certain position
 	char getCharPos(int selection, int x, int y) {
 		return maps[selection][x][y];
 	}
 
-	// Inits the vectors of maps
+	// Inits the vectors of maps. Only do once!
 	void initMaps() {
 		string line;
 		ifstream myfile("maps.txt");
