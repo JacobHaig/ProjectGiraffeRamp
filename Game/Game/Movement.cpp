@@ -17,8 +17,6 @@
 #define KEY_RIGHT 77
 #define KEY_ESC 27
 
-#define moveME Utilities::vectorObjEnt(entsSelected, "@")
-
 
 namespace Movement {
 
@@ -42,16 +40,16 @@ namespace Movement {
 			return false;
 
 		case KEY_W: // Player 1
-			moveME->moveY(-1);
+			Utilities::vectorObjEnt(entsSelected, "@")->moveY(-1);
 			return true;
 		case KEY_A:
-			moveME->moveX(-1);
+			Utilities::vectorObjEnt(entsSelected, "@")->moveX(-1);
 			return true;
 		case KEY_S:
-			moveME->moveY(1);
+			Utilities::vectorObjEnt(entsSelected, "@")->moveY(1);
 			return true;
 		case KEY_D:
-			moveME->moveX(1);
+			Utilities::vectorObjEnt(entsSelected, "@")->moveX(1);
 			return true;
 		default:
 			return false;

@@ -63,6 +63,10 @@ namespace Ents {
 		ents[selectedEnts][entIndex]->setPos(pos);
 	}
 
+	void removeEnt(entSelect selectedEnts, int entIndex) {
+		ents[selectedEnts].erase(ents[selectedEnts].begin() + entIndex);
+	}
+
 	// Start the ents vector
 	void initEntities() {
 		string line;

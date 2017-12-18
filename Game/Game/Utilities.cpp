@@ -29,10 +29,11 @@ namespace Utilities {
 	}
 
 	// Returns name if two ents share the same pos else returns "Nope"
-	string checkPos(vector<Person*> thisVector) {   //checks if the Pos of X and Y of both Pointers are equal
-		for each (Person* name in thisVector) {
+	string checkPos(entSelect selected) {   //checks if the Pos of X and Y of both Pointers are equal
+		auto ents = Ents::getEnt(selected);
+		for each (Person* name in ents) {
 			COORD Pos2 = name->getPos();
-			COORD Pos1 = thisVector[Utilities::vectorObjIndex("@", thisVector)]->getPos();
+			COORD Pos1 = Utilities::vectorObjEnt(selected, "@")->getPos();
 
 			// Makes sure we don't fight our Follower 
 			if (Pos2.X == Pos1.X && Pos2.Y == Pos1.Y && (name->Name != " " && name->Name != "@"))
@@ -71,19 +72,19 @@ namespace Utilities {
 	}
 
 	// Check for a collision with a wall or portal, if so return
-	void checkMap(int &entsSelected, int &mapsSelection) {
+	void checkMap(entSelect &entsSelected, mapSelect &mapsSelection) {
 		auto ents = Ents::getEnt(entsSelected);
 
-		Person* personMe = Utilities::vectorObjEnt(ents, "@");
+		Person* personMe = Utilities::vectorObjEnt(entsSelected, "@");
 		COORD Pos = personMe->getPos();
 
-		Person* follower = Utilities::vectorObjEnt(ents, " ");
+		Person* follower = Utilities::vectorObjEnt(entsSelected, " ");
 		COORD lastPos = follower->getPos();
 
 		if (Maps::getCharPos(mapsSelection, Pos.Y, Pos.X) == '*') {
 			auto selection = changeMap(personMe, mapsSelection);
-			entsSelected = selection;
-			mapsSelection = selection;
+			entsSelected = (entSelect)selection;
+			mapsSelection = (mapSelect)selection;
 		}
 		if (Maps::getCharPos(mapsSelection, Pos.Y, Pos.X) != ' ') {
 			personMe->setPos(lastPos);
@@ -98,48 +99,48 @@ namespace Utilities {
 	}
 
 	// Adjusts the players position on map change
-	vector<Person*> movePlayerOnMapChange(int curMap, int lastMap, vector<Person*> curEnt, vector<Person*> ent1, vector<Person*> ent2, vector<Person*> ent3, vector<Person*> ent4) {
+	entSelect movePlayerOnMapChange(int curMap, int lastMap, entSelect ent) {
 
 		COORD pos;
 		if (curMap == mapSelect::Map2 && lastMap == mapSelect::Map1) {
-			curEnt = ent2;
+			ent = ent2;
 			pos = { 45, 1 };
 		}
 		if (curMap == mapSelect::Map3 && lastMap == mapSelect::Map1) {
-			curEnt = ent3;
+			ent = ent3;
 			pos = { 2, 11 };
 		}
 		if (curMap == mapSelect::Map1 && lastMap == mapSelect::Map2) {
-			curEnt = ent1;
+			ent = ent1;
 			pos = { 45, 21 };
 		}
 		if (curMap == mapSelect::Map4 && lastMap == mapSelect::Map2) {
-			curEnt = ent4;
+			ent = ent4;
 			pos = { 2, 11 };
 		}
 		if (curMap == mapSelect::Map1 && lastMap == mapSelect::Map3) {
-			curEnt = ent1;
+			ent = ent1;
 			pos = { 117, 11 };
 		}
 		if (curMap == mapSelect::Map4 && lastMap == mapSelect::Map3) {
-			curEnt = ent4;
+			ent = ent4;
 			pos = { 60, 1 };
 		}
 		if (curMap == mapSelect::Map3 && lastMap == mapSelect::Map2) {
-			curEnt = ent3;
+			ent = ent3;
 			pos = { 61, 21 };
 		}
 		if (curMap == mapSelect::Map2 && lastMap == mapSelect::Map4) {
-			curEnt = ent2;
+			ent = ent2;
 			pos = { 117, 11 };
 		}
 
-		curEnt[Utilities::vectorObjIndex("@", curEnt)]->setPos(pos);
+		Ents::changeEntsPos(ent, Utilities::vectorObjIndex(ent, "@"), pos); // change the players pos when they walk through a portal.
 		system("CLS");			//clear the screen
 		Draw::drawVectorMaps(mapSelect::playerInfo);
 		Draw::drawVectorMaps(curMap);
 
-		return curEnt;
+		return ent;
 	}
 
 

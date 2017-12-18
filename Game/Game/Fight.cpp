@@ -11,8 +11,13 @@
 
 namespace Fight
 {
-	void fight(vector<Person*> Entities, string OppenentName, string yourName, vector<int> playerStats, string statsFilename)
+	void fight(entSelect Entities, int entIndex, vector<int> playerStats, string statsFilename)
 	{
+		auto ents = Ents::getEnt(Entities);
+		string OppenentName = ents[entIndex]->RealName;
+
+		string yourName = "Gary 25";
+
 		bool playerDead = false, npcDead = false;				//Declare player stats, enemy stats, named attacks
 		int skillMultiplier = 1;
 		vector<double> npcStats(10) /*,playerStats*/;
@@ -27,7 +32,7 @@ namespace Fight
 			GameCombat::attack(playerStats, npcStats, skillMultiplier);
 			GameCombat::getInput();								//get input from charactor
 
-			if (npcStats[0] <= 0 ? true : false)
+			if (npcStats[0] <= 0)
 				GameCombat::npcAttack(npcStats, playerStats, skillMultiplier);
 			else
 			{
