@@ -10,7 +10,7 @@ using namespace std;
 
 namespace Utilities {
 
-	// vectorObjIndex function
+	// Returns the index of the vector of Persons that have the same name
 	int vectorObjIndex(string Name, vector<Person*> thisVector) { //looks for pointer in vector with a name of Name then returns the Position
 		int counter = 0;
 		for each (Person* obj in thisVector) {
@@ -21,12 +21,13 @@ namespace Utilities {
 		return -1;
 	}
 
-	// checkPos function
-	string checkPos(vector<Person*> thisVector) {                   //checks if the Pos of X and Y of both Pointers are equal
-		for each (Person* name in thisVector)
-		{
+	// Returns name if two ents share the same pos else returns "Nope"
+	string checkPos(vector<Person*> thisVector) {   //checks if the Pos of X and Y of both Pointers are equal
+		for each (Person* name in thisVector){
 			COORD Pos2 = name->getPos();
 			COORD Pos1 = thisVector[Utilities::vectorObjIndex("@", thisVector)]->getPos();
+
+			// Makes sure we don't fight our Follower 
 			if (Pos2.X == Pos1.X && Pos2.Y == Pos1.Y && (name->Name != " " && name->Name != "@"))
 				return name->Name;
 		}
@@ -57,28 +58,32 @@ namespace Utilities {
 			return mapSelect::Map2;
 		if (mapSelect::Map4 == selection && name->getPosY() < 5)// Map 4 to 3
 			return mapSelect::Map3;
+		return 0;
 	}
 
 	// checkMap function
 	int checkMap(vector<Person*> thisVector, int selection) {
 		
-		COORD Pos = thisVector[Utilities::vectorObjIndex("@", thisVector)]->getPos();
-		auto name = thisVector[Utilities::vectorObjIndex("@", thisVector)];
-		COORD lastPos = thisVector[Utilities::vectorObjIndex(" ", thisVector)]->getPos();
+		Person* personMe = thisVector[Utilities::vectorObjIndex("@", thisVector)];
+		COORD Pos = personMe->getPos();
+		
+		Person* personBlank = thisVector[Utilities::vectorObjIndex(" ", thisVector)];
+		COORD lastPos = personBlank->getPos();
 
 		if (Maps::getCharPos(selection, Pos.Y,Pos.X) == '*') {
-			return changeMap(name, selection);
+			return changeMap(personMe, selection);
 		}
 		if (Maps::getCharPos(selection, Pos.Y, Pos.X) != ' ') {
-			thisVector[Utilities::vectorObjIndex("@", thisVector)]->setPos(lastPos);
-			thisVector[Utilities::vectorObjIndex(" ", thisVector)]->setPos(Pos);
+			personMe->setPos(lastPos);
+			personBlank->setPos(Pos);
 			Draw::drawVectorEntities(thisVector, selection);
 		}
 		return selection;
 	}
 
+	// Stop this thread for _ ms
 	void SleepNow(int MS) {
-		this_thread::sleep_for(chrono::microseconds(MS));
+		this_thread::sleep_for(chrono::milliseconds(MS));
 	}
 
 	vector<Person*> movePlayerOnMapChange(int curMapSelected, int lastMapSelected, vector<Person*> curEnt, vector<Person*> ent1, vector<Person*>ent2, vector<Person*>ent3, vector<Person*>ent4) {
@@ -120,6 +125,7 @@ namespace Utilities {
 		}
 
 		curEnt[Utilities::vectorObjIndex("@", curEnt)]->setPos(pos);
+
 		system("CLS");			//clear the screen
 		Draw::drawVectorMaps(mapSelect::playerInfo);
 		Draw::drawVectorMaps(curMapSelected);
@@ -130,7 +136,7 @@ namespace Utilities {
 	COORD randPos(int xrand, int xoff, int yrand, int yoff) { 
 		COORD pos;
 		static int random = 0;
-		srand(time(0) + random);
+		srand((unsigned int)time(0) + random);
 		random = rand();
 
 		// x/y rand can not be 0
@@ -140,6 +146,7 @@ namespace Utilities {
 	}
 
 	void PlayMusic(wstring song) {
+		// uncommenting crashes the program
 		//PlaySound(song.c_str(), NULL, SND_FILENAME | SND_ASYNC);
 	}
 }

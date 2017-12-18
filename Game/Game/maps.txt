@@ -109,9 +109,9 @@ Map3
 ###                                                                  / /   +_    ~/   / +      _ +         +/    +  _###
 ###                                                                 / /      + ~~/  _/   +    / + +         +__   +/ ###
 ###                                                                  /--_-----~~/  /      +_ /   + +_    _/+  _+  /  ###
-###                                                                          ~~/- /         +  /+_+  +  /   +/  +/   ###
-###                                                                        ~~~   /---__--_---+/---++_-+/--_--+---+---###
-###                                                                  ~^~^~~~                                         ###
+ *                                                                           ~~/- /         +  /+_+  +  /   +/  +/   ###
+ *                                                                         ~~~   /---__--_---+/---++_-+/--_--+---+---###
+ *                                                                   ~^~^~~~                                         ###
 ###                                                              ~^~~^~~^~                                           ###
 ###                                                   H  H~~^~^~~~^~^~                                               ###
 ###                                       ~~~^~~~^~^~^~H  H~^~~^~~~                                                  ###
@@ -142,9 +142,9 @@ Map4
 ###                             AAAAA                     AAAAAAA        AA            AAA           AAAA       AAAAA###
 ###                           AAAAAAAAA                     AAAAAAA                   AAAAA         AAAAAAA       AAA###
 ###AAAAAAAAAAAAAAAAA       AAAAAAAAAA                        AAAAAAAAA              AAAAAAAAAA        AAA          AA###
-###     AAAAAAAAAAAAAAAAAAAAAAAA                                AAAA                 AAAAAAAAAAA                    A###
-###          AAAAAAAAAAAAAA                                      A                     AAAAAAAAAAA                   ###
-###             AAAAAA                                    AAAA               AAA        AAAAAAAAA                    ###
+ *      AAAAAAAAAAAAAAAAAAAAAAAA                                AAAA                 AAAAAAAAAAA                    A###
+ *           AAAAAAAAAAAAAA                                      A                     AAAAAAAAAAA                   ###
+ *              AAAAAA                                    AAAA               AAA        AAAAAAAAA                    ###
 ###                        AAAAA                         AAAAAAAAAAA       AAAAAAAA        AAA           AAA        A###
 ###                      AAAAAAAAAAA                   AAAAAAAA             AAAAAAAAAAA                 AAAAA       A###
 ###                    AAAAA      AAAAAAA               AAAAAA                AAAAAAAAAAA           AAAAAA         AA###

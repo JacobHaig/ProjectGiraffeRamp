@@ -10,21 +10,28 @@ using namespace std;
 namespace Maps {
 	vector<vector<string>> maps;
 
+	// Returns the entire map that is selected
 	vector<string> getMap(int index) {
 		return maps[index];
 	}
+
+	// Returns the Charactor at a certain pos
 	char getCharPos(int selection, int x, int y) {
 		return maps[selection][x][y];
 	}
+
+	// Inits the vectors of maps
 	void initMaps() {
 		string line;
 		ifstream myfile("maps.txt");
 		vector<string> wholeVector;
 
+		// Read from the file
 		while (getline(myfile, line))
 			wholeVector.push_back(line);
 		myfile.close();
 
+		// Creates the maps
 		for (int i = 0; i < wholeVector.size() / 33; i++) {
 			vector<string> tempVector;
 			for (int j = 2; j < 32; j++)
@@ -33,6 +40,7 @@ namespace Maps {
 		}
 	}
 }
+
 
 namespace Ents {
 	auto createPerson(string name, int counterId, int x, int y) {
@@ -46,10 +54,12 @@ namespace Ents {
 
 	vector<vector<Person*>> ents;
 
+	// Get the vector of ents selected
 	vector<Person*> getEnt(int index) {
 		return ents[index];
 	}
 
+	// Start the ents vector
 	void initEntities() {
 		string line;
 		ifstream myfile("ents.txt");

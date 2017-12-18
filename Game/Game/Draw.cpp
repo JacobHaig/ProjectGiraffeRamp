@@ -10,7 +10,7 @@ using namespace std;
 namespace Draw {
 
 	void drawVectorEntities(vector<Person*> Entities, int selection) {
-		auto Map = Maps::getMap(selection); 
+		auto Map = Maps::getMap(selection);
 		for each (Person* P in Entities)
 		{
 			if (Map[P->getPosY()][P->getPosX()] == ' ') {
@@ -23,7 +23,7 @@ namespace Draw {
 	void drawVectorMaps(int selection) {
 		auto map = Maps::getMap(selection); // Get the map
 
-		for (int i = 0; i < map.size(); i++) 
+		for (int i = 0; i < map.size(); i++)
 			for (int j = 0; j < map[i].length(); j++) {
 				char charactor = map[i][j];
 				if (charactor != ' ')
@@ -33,7 +33,7 @@ namespace Draw {
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 				}
 			}
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {0, 0});
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 });
 	}
 
 	void changeCursorProperties(int i, int j, char &charactor) {
@@ -134,9 +134,11 @@ namespace Draw {
 		system("CLS");
 	}
 
+	// This is depercated
 	void drawLore() {
 		//thread music2(Utilities::PlayMusic, L"ThemeSong.wav");
-		for (int i = 0; i < 35; i++)
+		
+		/*for (int i = 0; i < 35; i++)
 			cout << endl;
 
 		ifstream titleFile("Lores.txt");
@@ -151,16 +153,15 @@ namespace Draw {
 		for (int i = 0; i < 35; i++)
 			cout << endl;
 
-		for each (string var in text)
-		{
+		for each (string var in text) {
 			cout << var << "\n";
 			Sleep(450);
 		}
-		for (int i = 0; i < 35; i++)
-		{
+		for (int i = 0; i < 35; i++) {
 			cout << endl;
 			Sleep(450);
-		}
+		}*/
+
 		//music2.join();   music2 must join if function is music2 is created or crash with occur 
 		Sleep(100);
 	}
