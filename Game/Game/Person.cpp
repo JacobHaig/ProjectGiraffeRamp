@@ -26,27 +26,27 @@ void Person::SetInfo(int x, int y) {
 	Pos.X = x;
 	Pos.Y = y;
 }
-
 void Person::moveX(int x) {
 	SetInfo(Pos.X + x, Pos.Y);
 }
-
 void Person::moveY(int y) {
 	SetInfo(Pos.X, Pos.Y + y);
 }
-
 int Person::getPosX() {
 	return Pos.X;
 }
-
 int Person::getPosY() {
 	return Pos.Y;
 }
-
 COORD Person::getPos() {
 	return Pos;
 }
-
 void Person::setPos(COORD pos) {
 	Pos = pos;
+}
+void Person::setX(int x) {
+	Pos.X = x;
+}
+void Person::setY(int y) {
+	Pos.Y = y;
 }

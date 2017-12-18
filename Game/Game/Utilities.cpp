@@ -7,22 +7,30 @@
 using namespace std;
 
 namespace Utilities {
-	
+
 	// Returns the index of the vector of Persons that have the same name
-	int vectorObjIndex(string Name, vector<Person*> thisVector) { //looks for pointer in vector with a name of Name then returns the Position
+	int vectorObjIndex(entSelect entsSelected, string Name) { //looks for pointer in vector with a name of Name then returns the Position
+		auto ents = Ents::getEnt(entsSelected);
 		int counter = 0;
-		for each (Person* obj in thisVector) {
+		for each (Person* obj in ents) {
 			if (Name == obj->Name)
 				return counter;
 			counter++;
 		}
-
 		return -1;
+	}
+
+	// Returns the index of the vector of Persons that have the same name
+	Person* vectorObjEnt(entSelect entsSelected, string Name) { //looks for pointer in vector with a name of Name then returns the Position
+		auto ents = Ents::getEnt(entsSelected);
+		for each (Person* obj in ents)
+			if (Name == obj->Name)
+				return obj;
 	}
 
 	// Returns name if two ents share the same pos else returns "Nope"
 	string checkPos(vector<Person*> thisVector) {   //checks if the Pos of X and Y of both Pointers are equal
-		for each (Person* name in thisVector){
+		for each (Person* name in thisVector) {
 			COORD Pos2 = name->getPos();
 			COORD Pos1 = thisVector[Utilities::vectorObjIndex("@", thisVector)]->getPos();
 
@@ -62,81 +70,80 @@ namespace Utilities {
 		return 0;
 	}
 
-	// checkMap function
-	int checkMap(vector<Person*> thisVector, int selection) {
-		Person* personMe = thisVector[Utilities::vectorObjIndex("@", thisVector)];
+	// Check for a collision with a wall or portal, if so return
+	void checkMap(int &entsSelected, int &mapsSelection) {
+		auto ents = Ents::getEnt(entsSelected);
+
+		Person* personMe = Utilities::vectorObjEnt(ents, "@");
 		COORD Pos = personMe->getPos();
-		
-		Person* personBlank = thisVector[Utilities::vectorObjIndex(" ", thisVector)];
-		COORD lastPos = personBlank->getPos();
 
-		if (Maps::getCharPos(selection, Pos.Y,Pos.X) == '*') {
-			return changeMap(personMe, selection);
+		Person* follower = Utilities::vectorObjEnt(ents, " ");
+		COORD lastPos = follower->getPos();
+
+		if (Maps::getCharPos(mapsSelection, Pos.Y, Pos.X) == '*') {
+			auto selection = changeMap(personMe, mapsSelection);
+			entsSelected = selection;
+			mapsSelection = selection;
 		}
-		if (Maps::getCharPos(selection, Pos.Y, Pos.X) != ' ') {
+		if (Maps::getCharPos(mapsSelection, Pos.Y, Pos.X) != ' ') {
 			personMe->setPos(lastPos);
-			personBlank->setPos(Pos);
-			Draw::drawVectorEntities(thisVector, selection);
+			follower->setPos(Pos);
+			Draw::drawVectorEntities(entsSelected, mapsSelection);
 		}
-
-		return selection;
 	}
 
-	// Stop this thread for _ ms
+	// Stop this thread
 	void SleepNow(int MS) {
 		this_thread::sleep_for(chrono::milliseconds(MS));
-
 	}
 
 	// Adjusts the players position on map change
-	vector<Person*> movePlayerOnMapChange(int curMapSelected, int lastMapSelected, vector<Person*> curEnt, vector<Person*> ent1, vector<Person*>ent2, vector<Person*>ent3, vector<Person*>ent4) {
-		
+	vector<Person*> movePlayerOnMapChange(int curMap, int lastMap, vector<Person*> curEnt, vector<Person*> ent1, vector<Person*> ent2, vector<Person*> ent3, vector<Person*> ent4) {
+
 		COORD pos;
-		if (curMapSelected == mapSelect::Map2 && lastMapSelected == mapSelect::Map1) {
+		if (curMap == mapSelect::Map2 && lastMap == mapSelect::Map1) {
 			curEnt = ent2;
-			pos = { 45,1 };
+			pos = { 45, 1 };
 		}
-		if (curMapSelected == mapSelect::Map3 && lastMapSelected == mapSelect::Map1) {
+		if (curMap == mapSelect::Map3 && lastMap == mapSelect::Map1) {
 			curEnt = ent3;
-			pos = { 2,11 };
+			pos = { 2, 11 };
 		}
-		if (curMapSelected == mapSelect::Map1 && lastMapSelected == mapSelect::Map2) {
+		if (curMap == mapSelect::Map1 && lastMap == mapSelect::Map2) {
 			curEnt = ent1;
-			pos = { 45,21 };
+			pos = { 45, 21 };
 		}
-		if (curMapSelected == mapSelect::Map4 && lastMapSelected == mapSelect::Map2) {
+		if (curMap == mapSelect::Map4 && lastMap == mapSelect::Map2) {
 			curEnt = ent4;
-			pos = { 2,11 };
+			pos = { 2, 11 };
 		}
-
-		if (curMapSelected == mapSelect::Map1 && lastMapSelected == mapSelect::Map3) {
+		if (curMap == mapSelect::Map1 && lastMap == mapSelect::Map3) {
 			curEnt = ent1;
-			pos = { 117,11 };
+			pos = { 117, 11 };
 		}
-		if (curMapSelected == mapSelect::Map4 && lastMapSelected == mapSelect::Map3) {
+		if (curMap == mapSelect::Map4 && lastMap == mapSelect::Map3) {
 			curEnt = ent4;
-			pos = { 60,1 };
+			pos = { 60, 1 };
 		}
-
-		if (curMapSelected == mapSelect::Map3 && lastMapSelected == mapSelect::Map2) {
+		if (curMap == mapSelect::Map3 && lastMap == mapSelect::Map2) {
 			curEnt = ent3;
-			pos = { 61,21 };
+			pos = { 61, 21 };
 		}
-		if (curMapSelected == mapSelect::Map2 && lastMapSelected == mapSelect::Map4) {
+		if (curMap == mapSelect::Map2 && lastMap == mapSelect::Map4) {
 			curEnt = ent2;
-			pos = { 117,11 };
+			pos = { 117, 11 };
 		}
 
 		curEnt[Utilities::vectorObjIndex("@", curEnt)]->setPos(pos);
 		system("CLS");			//clear the screen
 		Draw::drawVectorMaps(mapSelect::playerInfo);
-		Draw::drawVectorMaps(curMapSelected);
+		Draw::drawVectorMaps(curMap);
 
 		return curEnt;
 	}
 
 
-	COORD randPos(int xrand, int xoff, int yrand, int yoff) { 
+	COORD randPos(int xrand, int xoff, int yrand, int yoff) {
 		COORD pos;
 		static int random = 0;
 		srand((unsigned int)time(0) + random);

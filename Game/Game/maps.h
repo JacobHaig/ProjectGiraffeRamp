@@ -21,6 +21,7 @@ namespace Maps {
 }
 
 namespace Ents {
+	void changeEntsPos(entSelect selectedEnts, int entIndex, COORD pos);
 	void initEntities();
 	vector<Person*> getEnt(int index);
 }

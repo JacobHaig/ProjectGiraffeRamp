@@ -5,5 +5,5 @@
 namespace Movement {
 
 	char getInput();
-	bool move(char moveDir, vector<Person*> Entities, int selection);
+	bool move(char key, entSelect entsSelected, int selection);
 }

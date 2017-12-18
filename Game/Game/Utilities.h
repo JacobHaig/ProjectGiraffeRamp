@@ -3,7 +3,8 @@
 #include "Common.h"
 
 namespace Utilities {
-	int vectorObjIndex(string Name, std::vector<Person*> thisVector);
+	int vectorObjIndex(entSelect entsSelected, string Name);
+	Person* vectorObjEnt(entSelect entsSelected, string Name);
 	string checkPos(vector<Person*> thisVector); //checks if the Pos of X and Y of both Pointers are equal
 	int changeMap(Person* name, int selection);
 	int checkMap(vector<Person*> thisVector, int selection);

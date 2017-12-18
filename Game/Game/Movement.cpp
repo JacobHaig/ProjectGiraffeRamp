@@ -17,7 +17,7 @@
 #define KEY_RIGHT 77
 #define KEY_ESC 27
 
-#define entNamed(x) Entities[Utilities::vectorObjIndex(x, Entities)]
+#define moveME Utilities::vectorObjEnt(entsSelected, "@")
 
 
 namespace Movement {
@@ -28,8 +28,10 @@ namespace Movement {
 		return key;
 	}
 
-	bool move(char key, vector<Person*> Entities,int selection) {
-		switch (key){
+	bool move(char key, entSelect entsSelected, int selection) {
+		vector<Person*> Entities = Ents::getEnt(entsSelected);
+
+		switch (key) {
 			// this is the pause menu, once ESC is pressed it must be pressed again to exit the menu
 		case KEY_ESC:
 			system("CLS");
@@ -40,16 +42,16 @@ namespace Movement {
 			return false;
 
 		case KEY_W: // Player 1
-			entNamed("@")->moveY(-1);
+			moveME->moveY(-1);
 			return true;
 		case KEY_A:
-			entNamed("@")->moveX(-1);
+			moveME->moveX(-1);
 			return true;
 		case KEY_S:
-			entNamed("@")->moveY(1);
+			moveME->moveY(1);
 			return true;
 		case KEY_D:
-			entNamed("@")->moveX(1);
+			moveME->moveX(1);
 			return true;
 		default:
 			return false;

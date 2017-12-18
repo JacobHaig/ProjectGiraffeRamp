@@ -21,5 +21,7 @@ public:
 	int getPosY();
 	COORD getPos();
 	void setPos(COORD pos);
+	void setX(int x);
+	void setY(int y);
 };
 

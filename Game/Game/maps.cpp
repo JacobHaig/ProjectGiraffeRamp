@@ -59,6 +59,10 @@ namespace Ents {
 		return ents[index];
 	}
 
+	void changeEntsPos(entSelect selectedEnts, int entIndex, COORD pos) {
+		ents[selectedEnts][entIndex]->setPos(pos);
+	}
+
 	// Start the ents vector
 	void initEntities() {
 		string line;

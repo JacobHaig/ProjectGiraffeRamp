@@ -10,9 +10,10 @@ using namespace std;
 namespace Draw {
 
 	// Draws all ents at their locations
-	void drawVectorEntities(vector<Person*> Entities, int selection) {
-		auto map = Maps::getMap(selection);
-		for each (Person* P in Entities)
+	void drawVectorEntities(int entSelected, int mapSelection) {
+		auto map = Maps::getMap(mapSelection);
+		auto ents = Ents::getEnt(entSelected);
+		for each (Person* P in ents)
 			if (map[P->getPosY()][P->getPosX()] == ' ') {
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), P->Pos);
 				cout << P->Name;
@@ -67,9 +68,12 @@ namespace Draw {
 	}
 
 	// drawYourStats
-	void drawYourStats(vector<Person*> Ent1, vector<Person*> Ent2, vector<Person*> Ent3, vector<Person*> Ent4) {
+	void drawYourStats() {
 		static int health = 100, mana = 100;
-		int numOfEnt = Ent1.size() + Ent2.size() + Ent3.size() + Ent4.size();
+		vector<vector<Person*>> entsVect;
+		for (int i = 0; i < 4; i++)
+			entsVect.push_back(Ents::getEnt(i));
+		int numOfEnt = entsVect[0].size() + entsVect[1].size() + entsVect[2].size() + entsVect[3].size();
 
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 5, 25 });
 		cout << "Entities Left: " << numOfEnt;

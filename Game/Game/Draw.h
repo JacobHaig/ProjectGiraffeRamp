@@ -3,9 +3,9 @@
 #include "Common.h"
 
 namespace Draw {
-	void drawVectorEntities(vector<Person*> Entities, int selection);
+	void drawVectorEntities(int entSelected, int selection);
 	void drawMainMenu();
-	void drawYourStats(vector<Person*> Ent1, vector<Person*> Ent2, vector<Person*> Ent3, vector<Person*> Ent4);
+	void drawYourStats();
 	void drawFightStats(string yourName, string enemyName, int yourHealth, int enemyHealth);
 	void drawLore();
 	void drawCredits();
