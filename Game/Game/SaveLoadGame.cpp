@@ -42,23 +42,22 @@ namespace SaveLoad {
 	vector<int> playerStatsLoadMain() {
 		vector<int> playerStats;
 		string statsFilename, str;
-		
 		COORD pos = { 48, 11 };
 
 		Draw::drawVectorMaps(mapSelect::saveMenu);
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 
-		do 
+		do
 			cin >> statsFilename;
 		while (statsFilename.length() > 16 || statsFilename.length() < 0);// The file name must be a realistic
 
 		statsFilename += ".txt";
 		ifstream outputPlayerInfo(statsFilename);
 
-		if (!outputPlayerInfo) {		//if the file name doesn't exist  we need to make one
+		if (!outputPlayerInfo) {		// If the file name doesn't exist  we need to make one
 			outputPlayerInfo.close();
 			ofstream createPlayerInfo(statsFilename);
-			
+
 			for each(int i in choosePlayerClass()/*these may need to be changed*/)
 				createPlayerInfo << i << "\n";
 

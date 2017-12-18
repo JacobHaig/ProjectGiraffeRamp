@@ -68,6 +68,7 @@ namespace Utilities {
 		if (mapSelect::Map4 == selection && name->getPosY() < 5)// Map 4 to 3
 			return mapSelect::Map3;
 
+
 		return 0;
 	}
 
@@ -83,7 +84,7 @@ namespace Utilities {
 
 		if (Maps::getCharPos(mapsSelection, Pos.Y, Pos.X) == '*') {
 			auto selection = changeMap(personMe, mapsSelection);
-			entsSelected = (entSelect)selection;
+			entsSelected = (entSelect)(selection - 1); // aligning the maps and ents enums
 			mapsSelection = (mapSelect)selection;
 		}
 		if (Maps::getCharPos(mapsSelection, Pos.Y, Pos.X) != ' ') {
