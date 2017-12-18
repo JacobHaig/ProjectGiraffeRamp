@@ -2,10 +2,7 @@
 #include "Person.h"
 #include "Common.h"
 
-
-
 namespace Utilities {
-
 	int vectorObjIndex(string Name, std::vector<Person*> thisVector);
 	string checkPos(vector<Person*> thisVector); //checks if the Pos of X and Y of both Pointers are equal
 	int changeMap(Person* name, int selection);

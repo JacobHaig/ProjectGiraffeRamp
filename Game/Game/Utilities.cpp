@@ -7,7 +7,7 @@
 using namespace std;
 
 namespace Utilities {
-
+	
 	// Returns the index of the vector of Persons that have the same name
 	int vectorObjIndex(string Name, vector<Person*> thisVector) { //looks for pointer in vector with a name of Name then returns the Position
 		int counter = 0;

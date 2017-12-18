@@ -71,27 +71,27 @@ namespace Draw {
 		static int health = 100, mana = 100;
 		int numOfEnt = Ent1.size() + Ent2.size() + Ent3.size() + Ent4.size();
 
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 5 ,25 });
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 5, 25 });
 		cout << "Entities Left: " << numOfEnt;
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 5 ,26 });
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 5, 26 });
 		cout << "Mana:   " << mana;
 	}
 
 	// drawFightStats
 	void drawFightStats(string yourName, string enemyName, int yourHealth, int enemyHealth) {
 
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 25 ,3 });	// { x , y }
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 25, 3 });	// { x , y }
 		cout << yourName;
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 85,3 });
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 85, 3 });
 		cout << enemyName;
 
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 7 ,25 });
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 7, 25 });
 		cout << "Skill 1: Placeholder";
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 33 ,25 });
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 33, 25 });
 		cout << "Skill 2: Placeholder";
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 7 ,27 });
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 7, 27 });
 		cout << "Skill 3: Placeholder";
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 33 ,27 });
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 33, 27 });
 		cout << "Skill 4: Placeholder";
 
 	}
