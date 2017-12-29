@@ -2,7 +2,6 @@
 #include "Person.h"
 #include "maps.h"
 #include "Draw.h"
-#include "Common.h"
 
 using namespace std;
 

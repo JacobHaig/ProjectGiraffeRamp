@@ -1,11 +1,7 @@
 #include "stdafx.h"
 #include "Fight.h"
-#include "Draw.h"
-#include "Person.h"
-#include "maps.h"
 #include "GameCombat.h"
 #include "SaveLoadGame.h"
-#include "Common.h"
 
 //Create a combat header file for attack commands and interaction with entities.
 

@@ -1,11 +1,8 @@
 #include "stdafx.h"
-#include "Person.h"
 #include "Movement.h"
 #include "Draw.h"
 #include "Utilities.h"
-#include "Maps.h"
 
-#include "Common.h"
 
 #define KEY_W 119
 #define KEY_S 115

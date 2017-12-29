@@ -1,11 +1,5 @@
 #include "stdafx.h"
 #include "SaveLoadGame.h"
-#include "stdafx.h"
-#include "Fight.h"
-#include "Draw.h"
-#include "Maps.h"
-#include "Person.h"
-#include "Common.h"
 
 #define one 49
 #define two 50

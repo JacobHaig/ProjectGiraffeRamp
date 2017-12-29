@@ -1,9 +1,5 @@
 ﻿#include "stdafx.h"
-#include "Person.h"
-#include "Maps.h"
 #include "Utilities.h"
-#include "Draw.h"
-#include "Common.h"
 
 using namespace std;
 

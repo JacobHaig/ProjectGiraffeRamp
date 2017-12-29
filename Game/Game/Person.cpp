@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Person.h"
-#include "Common.h"
 
 using namespace std;
 
